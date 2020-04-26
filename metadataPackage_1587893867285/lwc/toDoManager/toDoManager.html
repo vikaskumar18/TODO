@@ -1,0 +1,43 @@
+<template>
+    <lightning-layout class="slds-align_absolute-center slds-text-align_center container" multiple-rows>
+        <lightning-layout-item size="12">
+          <div class="time">{CurrentTime}</div>  
+           
+        </lightning-layout-item>
+        <lightning-layout-item size="12">
+           <div class="greeting">{greeting} </div> 
+         
+        </lightning-layout-item>
+        <lightning-layout-item size="12" class="slds-text-heading_large slds-m-vertical_large">
+            What is your main focus today?
+        </lightning-layout-item>
+        <lightning-layout-item size="12" small-device-size="12" large-device-size="6" medium-device-size="10" 
+       >
+            <lightning-layout  class="slds-m-top_x-large">
+                <lightning-layout-item size="11">
+                    <lightning-input type="text" name="taskname" placeholder="Whats in your mind..." label="whats on ur mind" value={taskname} variant="label-hidden"></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="1">
+                    <lightning-button-icon icon-name="utility:add" onclick={addTodohandler}></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+                <lightning-layout-item size="12">
+                    <div>UPCOMING</div>
+                    <template for:each={upcomingTasks} for:item="todo">
+                        <!--c-todo-item onupdate={refetchTodos} ondelete={refetchTodos} key={todo.id} todo-id={todo.id} todoname={todo.todoName} done={todo.done}> </c-todo-item>-->
+        
+                        <c-todo-item  key={todo.id} todo-id={todo.id} todoname={todo.todoName} done={todo.done}> </c-todo-item>
+        
+                    </template>
+                    <div>COMPLETED </div>
+                    <template for:each={completedTasks} for:item="todo">
+        <!--                <c-todo-item onupdate={refetchTodos} ondelete={refetchTodos} key={todo.id} todo-id={todo.id} todoname={todo.todoName} done={todo.done}> </c-todo-item>-->
+                        <c-todo-item  key={todo.id} todo-id={todo.id} todoname={todo.todoName} done={todo.done}> </c-todo-item>
+        
+                        
+                    </template>
+                </lightning-layout-item>
+           
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
